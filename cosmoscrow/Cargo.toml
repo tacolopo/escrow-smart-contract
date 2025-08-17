@@ -1,0 +1,13 @@
+[workspace]
+members = ["contracts/cosmoscrow"]
+resolver = "2"
+
+[workspace.dependencies]
+cosmwasm-std = "1.5.0"
+cosmwasm-storage = "1.5.0"
+cosmwasm-schema = "1.5.0"
+cw-storage-plus = "1.2.0"
+schemars = "0.8.16"
+serde = { version = "1.0.196", default-features = false, features = ["derive"] }
+thiserror = "1.0.56"
+cw2 = "1.1.2"

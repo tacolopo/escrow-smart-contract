@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ExecuteMsg",
+  "oneOf": [
+    {
+      "description": "Create a new escrow with the sent funds",
+      "type": "object",
+      "required": [
+        "create_escrow"
+      ],
+      "properties": {
+        "create_escrow": {
+          "type": "object",
+          "required": [
+            "approver1",
+            "approver2",
+            "beneficiary",
+            "description"
+          ],
+          "properties": {
+            "approver1": {
+              "description": "First approver address (usually the creator)",
+              "type": "string"
+            },
+            "approver2": {
+              "description": "Second approver address",
+              "type": "string"
+            },
+            "approver3": {
+              "description": "Optional third party approver address",
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "beneficiary": {
+              "description": "Address that will receive the funds when released",
+              "type": "string"
+            },
+            "description": {
+              "description": "Description of the escrow conditions",
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "description": "Approve the release of funds for a specific escrow",
+      "type": "object",
+      "required": [
+        "approve_release"
+      ],
+      "properties": {
+        "approve_release": {
+          "type": "object",
+          "required": [
+            "escrow_id"
+          ],
+          "properties": {
+            "escrow_id": {
+              "description": "ID of the escrow to approve",
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    {
+      "description": "Cancel an escrow (only creator can do this if no approvals yet)",
+      "type": "object",
+      "required": [
+        "cancel_escrow"
+      ],
+      "properties": {
+        "cancel_escrow": {
+          "type": "object",
+          "required": [
+            "escrow_id"
+          ],
+          "properties": {
+            "escrow_id": {
+              "description": "ID of the escrow to cancel",
+              "type": "integer",
+              "format": "uint64",
+              "minimum": 0.0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  ]
+}
